@@ -7,11 +7,23 @@ public class LinearAndBinarySearch{
         for(int i = 0; i < values.length; i++){
             values[i] = i;
         }
+        for(int i = 0; i < values.length; i++){
+           System.out.println(values[i]);
+        }
 
         //realizar os testes
+        System.out.println("Test1: All the results must be true");
         for(int i = 0; i < values.length; i++){
             System.out.println("Linear search result: " + linearSearch(values, i));
             System.out.println("Binary search result: " + binarySearch(values, i));
+        }
+
+        System.out.println("\n\n");
+        
+        System.out.println("Test2: All the results must be false");
+        for(int i = 0; i < values.length; i++){
+            System.out.println("Linear search result: " + linearSearch(values, i + 100));
+            System.out.println("Binary search result: " + binarySearch(values, i + 100));
         }
     }
 
@@ -25,19 +37,19 @@ public class LinearAndBinarySearch{
     }
     
     private static boolean binarySearch(int []values, int key){
-        int top, bot, mid; 
-        top = values.length;
-        bot = 0;
-        
-        while (top > bot){
-            mid = (top + bot) / 2;
-            if (mid == key)
+        int begin, end, mid; 
+        end = values.length - 1;
+        begin = 0;
+        while (begin <= end){
+            mid = (begin + end) / 2;
+            if (values[mid] == key){
                 return true;
-            else if (key > mid){
-                bot = mid;
+            }
+            else if (key > values[mid]){
+                begin = mid + 1;
             }
             else{
-              top = mid;  
+              end = mid - 1;  
             }
         }
         return false; 	
